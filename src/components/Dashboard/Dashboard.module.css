@@ -71,3 +71,49 @@
   color: #ffd700;
   font-size: 14px;
 }
+
+@media (max-width: 768px) {
+  .pageTitle {
+    text-align: center;
+  }
+  .dashboardContainer {
+    padding: 15px;
+  }
+
+  .cardsRow {
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .legendContainer {
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0 0 0;
+    gap: 10px;
+  }
+
+  .item {
+    gap: 8px;
+  }
+
+  .box {
+    width: 12px;
+    height: 12px;
+  }
+
+  .pageTitle {
+    font-size: 26px;
+  }
+
+  .label_food,
+  .label_entertainment,
+  .label_travel {
+    font-size: 12px;
+  }
+
+  .bottomSection {
+    flex-direction: column;
+  }
+}
