@@ -1,0 +1,36 @@
+.container {
+  flex: 1;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+}
+
+.container h2 {
+  font-style: italic;
+}
+
+.box {
+  margin-top: 20px;
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.box ul {
+  list-style: none;
+  margin: 0 10px;
+  padding: 0;
+}
+
+.list {
+  list-style: none;
+}
+
+.list li {
+  margin: 20px 0;
+}
+
+.list span {
+  margin: 0 15px;
+}

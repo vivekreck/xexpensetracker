@@ -1,0 +1,25 @@
+.card {
+  flex: 1;
+  background: #8c8c8cff;
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.8);
+}
+.card h2 {
+  font-weight: 400;
+}
+.card span {
+  color: #3cff3c;
+}
+.addBtn {
+  margin-top: 20px;
+  background: linear-gradient(to right, #40e240, #14e714);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+}

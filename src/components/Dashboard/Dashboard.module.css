@@ -1,0 +1,72 @@
+.dashboardContainer {
+  width: 100%;
+  padding: 50px;
+}
+
+.pageTitle {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.cardsRow {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 40px;
+  background-color: #5e5d5d;
+  padding: 50px;
+  border-radius: 10px;
+}
+
+.bottomSection {
+  display: flex;
+  gap: 20px;
+}
+
+/* legendContainer */
+.legendContainer {
+  display: flex;
+  align-items: flex-end;
+  gap: 25px;
+  margin-left: 50px;
+  margin-right: 100px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.box {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+}
+
+.food {
+  background-color: #a000ff;
+}
+
+.entertainment {
+  background-color: #ff8c00;
+}
+
+.travel {
+  background-color: #ffd700;
+}
+
+.label_food {
+  color: #a000ff;
+  font-size: 14px;
+}
+
+.label_entertainment {
+  color: #ff8c00;
+  font-size: 14px;
+}
+
+.label_travel {
+  color: #ffd700;
+  font-size: 14px;
+}
