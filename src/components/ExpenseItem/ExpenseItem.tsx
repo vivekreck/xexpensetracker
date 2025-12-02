@@ -3,7 +3,7 @@ import styles from "./ExpenseItem.module.css";
 import { RxCrossCircled } from "react-icons/rx";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { PiPizza } from "react-icons/pi";
-import { useExpenses, type ExpenseItem } from "../../context/ExpenseContext";
+import { useExpenses, type ExpenseItem as ExpenseItemType } from "../../context/ExpenseContext";
 import EditExpenseModal from "../Modal/EditExpenseModal";
 
 interface Props {
@@ -18,7 +18,7 @@ const ExpenseItem: React.FC<Props> = ({ id, title, category = "", date, price })
   const { deleteExpense, editExpense } = useExpenses();
   const [showModal, setShowModal] = useState(false);
 
-  function handleSubmit(updated: Partial<ExpenseItem>) {
+  function handleSubmit(updated: Partial<ExpenseItemType>) {
     editExpense(id, updated);
     setShowModal(false);
   }
