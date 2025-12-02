@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Dashboard.module.css";
 
 import WalletCard from "../WalletCard/WalletCard";
@@ -8,20 +8,17 @@ import TopExpenses from "../TopExpenses/TopExpenses";
 import PieChart from "../PieChart/PieChart";
 
 const Dashboard: React.FC = () => {
-  const [wallet, setWallet] = useState(30);
-  const [expenses, setExpenses] = useState(40);
-
   return (
     <div className={styles.dashboardWrapper}>
       <h1 className={styles.pageTitle}>Expense Tracker</h1>
 
       <div className={styles.cardsSection}>
         <div className={styles.cardsRow}>
-          <WalletCard wallet={wallet} setWallet={(amount) => setWallet((curr) => curr + amount)} />
-          <ExpenseCard expenses={expenses} setExpenses={setExpenses} />
+          <WalletCard />
+          <ExpenseCard />
 
           <div>
-            <PieChart food={wallet} entertainment={expenses} travel={30} />
+            <PieChart />
 
             <div className={styles.legendContainer}>
               <div className={styles.item}>

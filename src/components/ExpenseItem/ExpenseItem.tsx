@@ -3,16 +3,26 @@ import styles from "./ExpenseItem.module.css";
 import { RxCrossCircled } from "react-icons/rx";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { PiPizza } from "react-icons/pi";
+import { useExpenses } from "../../context/ExpenseContext";
 
-interface ExpenseItemProps {
+interface Props {
+  id: string;
   title: string;
+  category?: string;
   date: string;
-  amount: number;
-  onDelete: () => void;
-  onEdit: () => void;
+  price: number;
 }
 
-const ExpenseItem: React.FC<ExpenseItemProps> = ({ title, date, amount, onDelete, onEdit }) => {
+const ExpenseItem: React.FC<Props> = ({ id, title, date, price }) => {
+  const { deleteExpense, editExpense } = useExpenses();
+
+  const handleEdit = () => {
+    const newAmount = Number(prompt("Enter new amount:", price.toString()));
+    if (!newAmount) return;
+
+    editExpense(id, { price: newAmount });
+  };
+
   return (
     <div className={styles.expenseItem}>
       <div className={styles.leftSection}>
@@ -27,13 +37,13 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({ title, date, amount, onDelete
       </div>
 
       <div className={styles.rightSection}>
-        <span className={styles.amount}>₹{amount}</span>
+        <span className={styles.amount}>₹{price}</span>
 
-        <button className={styles.deleteBtn} onClick={onDelete}>
+        <button className={styles.deleteBtn} onClick={() => deleteExpense(id)}>
           <RxCrossCircled size={22} />
         </button>
 
-        <button className={styles.editBtn} onClick={onEdit}>
+        <button className={styles.editBtn} onClick={handleEdit}>
           <MdOutlineModeEditOutline size={22} />
         </button>
       </div>

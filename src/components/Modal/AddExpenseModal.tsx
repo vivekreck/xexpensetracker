@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./AddExpenseModal.module.css";
+import { type ExpenseItem } from "../../context/ExpenseContext";
 
 interface AddExpenseModalProps {
   onClose: () => void;
-  onSubmit: (data: { title: string; price: number; category: string; date: string }) => void;
+  onSubmit: (data: ExpenseItem) => void;
 }
 
 const AddExpenseModal: React.FC<AddExpenseModalProps> = ({ onClose, onSubmit }) => {
@@ -16,6 +17,7 @@ const AddExpenseModal: React.FC<AddExpenseModalProps> = ({ onClose, onSubmit }) 
     if (!title || !price || !category || !date) return;
 
     onSubmit({
+      id: crypto.randomUUID(),
       title,
       price: Number(price),
       category,
@@ -36,6 +38,7 @@ const AddExpenseModal: React.FC<AddExpenseModalProps> = ({ onClose, onSubmit }) 
             placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            required
           />
 
           <input
@@ -48,15 +51,14 @@ const AddExpenseModal: React.FC<AddExpenseModalProps> = ({ onClose, onSubmit }) 
         </div>
 
         <div className={styles.formModal}>
-          <select className={styles.input} value={category} onChange={(e) => setCategory(e.target.value)}>
+          <select className={styles.input} value={category} onChange={(e) => setCategory(e.target.value)} required>
             <option value="">Select category</option>
             <option value="Food">Food</option>
             <option value="Travel">Travel</option>
-            <option value="Shopping">Shopping</option>
-            <option value="Others">Others</option>
+            <option value="Entertainment">Entertainment</option>
           </select>
 
-          <input className={styles.input} type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+          <input className={styles.input} type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
         </div>
 
         <div className={styles.btnRow}>

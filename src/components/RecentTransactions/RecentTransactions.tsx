@@ -1,18 +1,31 @@
 import React from "react";
 import styles from "./RecentTransactions.module.css";
 import ExpenseItem from "../ExpenseItem/ExpenseItem";
+import { useExpenses } from "../../context/ExpenseContext";
 
 const RecentTransactions: React.FC = () => {
-  const date = new Date();
-  const formatted = date.toISOString().split("T")[0];
+  const { expenses } = useExpenses();
 
   return (
     <div className={styles.container}>
       <h2>Recent Transactions</h2>
-      <div className={styles.card}>
-        <ExpenseItem title="food" date={formatted} amount={200} onDelete={() => {}} onEdit={() => {}} />
-      </div>
+      {expenses.length > 0 && (
+        <div className={styles.card}>
+          {expenses.map((exp) => (
+            <ExpenseItem
+              key={exp.id}
+              id={exp.id}
+              title={exp.title}
+              date={exp.date}
+              price={exp.price}
+              category={exp.category}
+            />
+          ))}
+        </div>
+      )}
+      {expenses.length === 0 && <div className={styles.box}>No transactions!</div>}
     </div>
   );
 };
+
 export default RecentTransactions;

@@ -1,25 +1,37 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./ExpenseCard.module.css";
 import AddExpenseModal from "../Modal/AddExpenseModal";
+import { useExpenses, type ExpenseItem } from "../../context/ExpenseContext";
 
-interface Props {
-  expenses: number;
-  setExpenses: (v: number) => void;
-}
-
-const ExpenseCard: React.FC<Props> = ({ expenses }) => {
+const ExpenseCard = () => {
+  const { totalSpent, wallet, setWallet, addExpense } = useExpenses();
   const [showModal, setShowModal] = useState(false);
+
+  function handleSubmit(item: ExpenseItem) {
+    if (wallet < item.price) {
+      alert("Low wallet balance!");
+      return;
+    }
+
+    addExpense(item);
+    setWallet((curr) => curr - item.price);
+
+    setShowModal(false);
+  }
 
   return (
     <div className={styles.card}>
       <h2>
-        Expenses: <span>₹{expenses}</span>
+        Expenses: <span>₹{totalSpent}</span>
       </h2>
-      {showModal && <AddExpenseModal onClose={() => setShowModal(false)} onSubmit={(amount) => console.log(amount)} />}
+
+      {showModal && <AddExpenseModal onClose={() => setShowModal(false)} onSubmit={handleSubmit} />}
+
       <button className={styles.addBtn} onClick={() => setShowModal(true)}>
         + Add Expense
       </button>
     </div>
   );
 };
+
 export default ExpenseCard;

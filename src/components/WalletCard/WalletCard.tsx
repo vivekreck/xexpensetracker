@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import styles from "./WalletCard.module.css";
 import AddBalanceModal from "../Modal/AddBalanceModal";
+import { useExpenses } from "../../context/ExpenseContext";
 
-interface Props {
-  wallet: number;
-  setWallet: (v: number) => void;
-}
+const WalletCard: React.FC = () => {
+  const { wallet, setWallet } = useExpenses();
 
-const WalletCard: React.FC<Props> = ({ wallet, setWallet }) => {
   const [showModal, setShowModal] = useState(false);
   return (
     <div className={styles.card}>
