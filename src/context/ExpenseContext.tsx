@@ -33,8 +33,31 @@ export const ExpenseProvider = ({ children }: { children: React.ReactNode }) => 
     setExpenses((prev) => prev.filter((e) => e.id !== id));
   };
 
-  const editExpense = (id: string | undefined, updated: Partial<ExpenseItem>) => {
-    setExpenses((prev) => prev.map((e) => (e.id === id ? { ...e, ...updated } : e)));
+  const editExpense = (id: string, updated: Partial<ExpenseItem>) => {
+    let walletAdjustment = 0;
+
+    setExpenses((prev) =>
+      prev.map((e) => {
+        if (e.id !== id) return e;
+
+        const oldPrice = e.price;
+        const newPrice = updated.price ?? oldPrice;
+        walletAdjustment = oldPrice - newPrice;
+
+        // Check wallet balance BEFORE applying update
+        if (wallet + walletAdjustment < 0) {
+          alert("Low wallet balance!");
+          walletAdjustment = 0;
+          return e;
+        }
+
+        return { ...e, ...updated, price: newPrice };
+      })
+    );
+
+    if (walletAdjustment !== 0) {
+      setWallet((curr) => curr + walletAdjustment);
+    }
   };
 
   const totalSpent = expenses.reduce((sum, item) => sum + item.price, 0);

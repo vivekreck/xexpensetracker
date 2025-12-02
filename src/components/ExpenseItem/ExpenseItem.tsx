@@ -1,27 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./ExpenseItem.module.css";
 import { RxCrossCircled } from "react-icons/rx";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { PiPizza } from "react-icons/pi";
-import { useExpenses } from "../../context/ExpenseContext";
+import { useExpenses, type ExpenseItem } from "../../context/ExpenseContext";
+import EditExpenseModal from "../Modal/EditExpenseModal";
 
 interface Props {
   id: string;
   title: string;
-  category?: string;
+  category: string;
   date: string;
   price: number;
 }
 
-const ExpenseItem: React.FC<Props> = ({ id, title, date, price }) => {
+const ExpenseItem: React.FC<Props> = ({ id, title, category = "", date, price }) => {
   const { deleteExpense, editExpense } = useExpenses();
+  const [showModal, setShowModal] = useState(false);
 
-  const handleEdit = () => {
-    const newAmount = Number(prompt("Enter new amount:", price.toString()));
-    if (!newAmount) return;
-
-    editExpense(id, { price: newAmount });
-  };
+  function handleSubmit(updated: Partial<ExpenseItem>) {
+    editExpense(id, updated);
+    setShowModal(false);
+  }
 
   return (
     <div className={styles.expenseItem}>
@@ -43,7 +43,15 @@ const ExpenseItem: React.FC<Props> = ({ id, title, date, price }) => {
           <RxCrossCircled size={22} />
         </button>
 
-        <button className={styles.editBtn} onClick={handleEdit}>
+        {showModal && (
+          <EditExpenseModal
+            onClose={() => setShowModal(false)}
+            onSubmit={handleSubmit}
+            defaultValues={{ title, price, category, date }}
+          />
+        )}
+
+        <button className={styles.editBtn} onClick={() => setShowModal(true)}>
           <MdOutlineModeEditOutline size={22} />
         </button>
       </div>
