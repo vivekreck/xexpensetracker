@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 export interface ExpenseItem {
   id: string;
@@ -22,8 +22,24 @@ interface ExpenseContextType {
 const ExpenseContext = createContext<ExpenseContextType | null>(null);
 
 export const ExpenseProvider = ({ children }: { children: React.ReactNode }) => {
-  const [expenses, setExpenses] = useState<ExpenseItem[]>([]);
-  const [wallet, setWallet] = useState(5000);
+  // Load from localStorage
+  const [expenses, setExpenses] = useState<ExpenseItem[]>(() => {
+    const stored = localStorage.getItem("expenses");
+    return stored ? JSON.parse(stored) : [];
+  });
+
+  const [wallet, setWallet] = useState(() => {
+    const stored = localStorage.getItem("wallet");
+    return stored ? Number(stored) : 5000;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+  }, [expenses]);
+
+  useEffect(() => {
+    localStorage.setItem("wallet", wallet.toString());
+  }, [wallet]);
 
   const addExpense = (item: ExpenseItem) => {
     setExpenses((prev) => [...prev, { ...item, id: crypto.randomUUID() }]);
@@ -44,7 +60,6 @@ export const ExpenseProvider = ({ children }: { children: React.ReactNode }) => 
         const newPrice = updated.price ?? oldPrice;
         walletAdjustment = oldPrice - newPrice;
 
-        // Check wallet balance BEFORE applying update
         if (wallet + walletAdjustment < 0) {
           alert("Low wallet balance!");
           walletAdjustment = 0;
@@ -64,7 +79,15 @@ export const ExpenseProvider = ({ children }: { children: React.ReactNode }) => 
 
   return (
     <ExpenseContext.Provider
-      value={{ expenses, addExpense, totalSpent, wallet, setWallet, deleteExpense, editExpense }}
+      value={{
+        expenses,
+        addExpense,
+        totalSpent,
+        wallet,
+        setWallet,
+        deleteExpense,
+        editExpense,
+      }}
     >
       {children}
     </ExpenseContext.Provider>

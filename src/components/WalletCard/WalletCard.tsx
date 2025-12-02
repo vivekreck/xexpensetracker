@@ -13,7 +13,12 @@ const WalletCard: React.FC = () => {
         Wallet Balance: <span>₹{wallet}</span>
       </h2>
 
-      {showModal && <AddBalanceModal onClose={() => setShowModal(false)} onSubmit={(amount) => setWallet(amount)} />}
+      {showModal && (
+        <AddBalanceModal
+          onClose={() => setShowModal(false)}
+          onSubmit={(amount) => setWallet((curr) => curr + amount)}
+        />
+      )}
 
       <button className={styles.addBtn} onClick={() => setShowModal(true)}>
         + Add Income

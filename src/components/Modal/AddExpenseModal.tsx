@@ -39,6 +39,7 @@ const AddExpenseModal: React.FC<AddExpenseModalProps> = ({ onClose, onSubmit }) 
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
+            name="title"
           />
 
           <input
@@ -47,22 +48,37 @@ const AddExpenseModal: React.FC<AddExpenseModalProps> = ({ onClose, onSubmit }) 
             placeholder="Price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            required
+            name="price"
           />
         </div>
 
         <div className={styles.formModal}>
-          <select className={styles.input} value={category} onChange={(e) => setCategory(e.target.value)} required>
+          <select
+            className={styles.input}
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            required
+            name="category"
+          >
             <option value="">Select category</option>
             <option value="Food">Food</option>
             <option value="Travel">Travel</option>
             <option value="Entertainment">Entertainment</option>
           </select>
 
-          <input className={styles.input} type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
+          <input
+            className={styles.input}
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            required
+            name="date"
+          />
         </div>
 
         <div className={styles.btnRow}>
-          <button className={styles.addBtn} onClick={handleSubmit}>
+          <button className={styles.addBtn} onClick={handleSubmit} type="submit">
             Add Expense
           </button>
 

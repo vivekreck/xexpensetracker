@@ -9,7 +9,8 @@ interface AddBalanceModalProps {
 const AddBalanceModal: React.FC<AddBalanceModalProps> = ({ onClose, onSubmit }) => {
   const [amount, setAmount] = React.useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
     if (!amount) return;
     onSubmit(Number(amount));
     onClose();
@@ -20,24 +21,25 @@ const AddBalanceModal: React.FC<AddBalanceModalProps> = ({ onClose, onSubmit }) 
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <h1 className={styles.title}>Add Balance</h1>
 
-        <div className={styles.formModal}>
+        <form className={styles.formModal} onSubmit={handleSubmit}>
           <input
             className={styles.input}
             type="number"
             placeholder="Income Amount"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
+            name="amount"
           />
 
           <div className={styles.btnRow}>
-            <button className={styles.addBtn} onClick={handleSubmit}>
+            <button className={styles.addBtn} type="submit">
               Add Balance
             </button>
-            <button className={styles.cancelBtn} onClick={onClose}>
+            <button type="button" className={styles.cancelBtn} onClick={onClose}>
               Cancel
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
