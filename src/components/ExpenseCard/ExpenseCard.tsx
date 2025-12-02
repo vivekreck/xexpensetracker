@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./ExpenseCard.module.css";
+import AddExpenseModal from "../Modal/AddExpenseModal";
 
 interface Props {
   expenses: number;
@@ -7,12 +8,17 @@ interface Props {
 }
 
 const ExpenseCard: React.FC<Props> = ({ expenses }) => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <div className={styles.card}>
       <h2>
         Expenses: <span>₹{expenses}</span>
       </h2>
-      <button className={styles.addBtn}>+ Add Expense</button>
+      {showModal && <AddExpenseModal onClose={() => setShowModal(false)} onSubmit={(amount) => console.log(amount)} />}
+      <button className={styles.addBtn} onClick={() => setShowModal(true)}>
+        + Add Expense
+      </button>
     </div>
   );
 };

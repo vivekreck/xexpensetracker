@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./WalletCard.module.css";
+import AddBalanceModal from "../Modal/AddBalanceModal";
 
 interface Props {
   wallet: number;
@@ -7,13 +8,18 @@ interface Props {
 }
 
 const WalletCard: React.FC<Props> = ({ wallet, setWallet }) => {
-  console.log(setWallet);
+  const [showModal, setShowModal] = useState(false);
   return (
     <div className={styles.card}>
       <h2>
         Wallet Balance: <span>₹{wallet}</span>
       </h2>
-      <button className={styles.addBtn}>+ Add Income</button>
+
+      {showModal && <AddBalanceModal onClose={() => setShowModal(false)} onSubmit={(amount) => setWallet(amount)} />}
+
+      <button className={styles.addBtn} onClick={() => setShowModal(true)}>
+        + Add Income
+      </button>
     </div>
   );
 };

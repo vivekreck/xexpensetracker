@@ -1,0 +1,83 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 30px;
+  border-radius: 14px;
+  width: 500px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.12);
+  animation: fadeIn 0.2s ease;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.formModal {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.input {
+  flex: 1;
+  padding: 12px 15px;
+  font-size: 15px;
+  border-radius: 12px;
+  border: 1px solid #dcdcdc;
+  outline: none;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btnRow {
+  display: flex;
+  gap: 15px;
+}
+
+.addBtn {
+  background: #f4b740;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  color: white;
+  padding: 14px 25px;
+  font-size: 15px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.cancelBtn {
+  background: #e6e6e6;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 15px;
+  padding: 14px 25px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+  }
+}

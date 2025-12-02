@@ -1,0 +1,77 @@
+.expenseItem {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  align-items: center;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.iconCircle {
+  width: 40px;
+  height: 40px;
+  background: #e8e8e8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.date {
+  font-size: 12px;
+  color: #777;
+  margin-top: -2px;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.amount {
+  font-size: 15px;
+  font-weight: 600;
+  color: #d09900;
+  margin-right: 20px;
+}
+
+.deleteBtn,
+.editBtn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.deleteBtn {
+  background: #ff4a4a;
+  color: white;
+}
+
+.editBtn {
+  background: #f4c24d;
+  color: white;
+}

@@ -7,10 +7,14 @@
 .container h2 {
   font-style: italic;
 }
-.box {
-  margin-top: 20px;
+
+.card {
+  width: 100%;
   background: white;
+  padding: 0 18px;
+  padding-top: 20px;
+  padding-bottom: 40px;
   color: black;
-  padding: 20px;
-  border-radius: 8px;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }

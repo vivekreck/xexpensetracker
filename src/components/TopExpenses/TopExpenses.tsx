@@ -9,20 +9,23 @@ const TopExpenses: React.FC = () => {
       <div className={styles.box}>
         <ul className={styles.list}>
           <li>
-            Food
-            <span>-</span>
+            <span className={styles.label}>Food - </span>
+            <div className={styles.bar} style={{ width: "70%", background: "#a000ff" }}></div>
           </li>
+
           <li>
-            Entertainment
-            <span>-</span>
+            <span className={styles.label}>Entertainment - </span>
+            <div className={styles.bar} style={{ width: "40%", background: "#ff8c00" }}></div>
           </li>
+
           <li>
-            Travel
-            <span>-</span>
+            <span className={styles.label}>Travel - </span>
+            <div className={styles.bar} style={{ width: "55%", background: "#ffd700" }}></div>
           </li>
         </ul>
       </div>
     </div>
   );
 };
+
 export default TopExpenses;
